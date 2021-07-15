@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="cobertura-2.1.1/examples/basic/src/" kind="src" path="tp3"/>
+	<classpathentry kind="src" path="tp3/cobertura-2.1.1/examples/basic/src"/>
+	<classpathentry kind="lib" path="tp3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

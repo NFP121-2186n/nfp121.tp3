@@ -13,64 +13,97 @@ import java.util.Vector;
  */
 public class Pile3 implements PileI {
 
-	private Vector<Object> v;
+    private Vector<Object> v;
+    private int ptr;
+    public Pile3() {
+        this(CAPACITE_PAR_DEFAUT);
+    }
 
-	public Pile3() {
-		this(0);
-	}
+    public Pile3(int taille) {
+    	// completed code
+    	
+        if (taille < 0)
+            taille = CAPACITE_PAR_DEFAUT;
+        v = new Vector(taille);
+        this.ptr = 0;
+    
+        
+    }
 
-	public Pile3(int taille) {
-		// traiter le cas <=0
-		// à compléter
-	}
+    public void empiler(Object o) throws PilePleineException {
+    	// completed code
+    	
+    	if (estPleine())
+        throw new PilePleineException();
+        this.v.add(ptr, o);
+        this.ptr++;
+    }
 
-	public void empiler(Object o) throws PilePleineException {
-		// à compléter
-	}
+    public Object depiler() throws PileVideException {
+    	// completed code
+    	
+    	if (estVide())
+            throw new PileVideException();
+//        this.v.remove(ptr);
+        this.ptr--;
+        return v.get(ptr);
+    }
 
-	public Object depiler() throws PileVideException {
-		// à compléter
-		return null;
-	}
+    public Object sommet() throws PileVideException {
+    	// completed code
+        return v.get(ptr-1);
+    }
 
-	public Object sommet() throws PileVideException {
-		// à compléter
-		return null;
-	}
+    public int taille() {
+    	// completed code
+        if(this.ptr <= 0) return 0;
+        return this.ptr;
+    }
 
-	public int taille() {
-		// à compléter
-		return -1;
-	}
+    public int capacite() {
+        // // completed code
+        return this.v.capacity();
+    }
 
-	public int capacite() {
-		// à compléter
-		return -1;
-	}
+    public boolean estVide() {
+    	// completed code
+        return ptr <= 0;
+    }
 
-	public boolean estVide() {
-		// à compléter
-		return false;
-	}
+    public boolean estPleine() {
+    	// completed code
+        return this.ptr >= this.capacite() ;
+    }
 
-	public boolean estPleine() {
-		// à compléter
-		return false;
-	}
+    public String toString() {
+    	// completed code
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i=this.ptr-1; i>= 0; i--) {
+            sb.append(v.get(i).toString());
+            if (i > 0)
+                sb.append(", ");
+        
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
-	public String toString() {
-		// à compléter
-		return "";
-	}
+      public boolean equals(Object o) {
+    	// completed code
+            if (o instanceof PileI) {
+                PileI p = (PileI) o;
+                return this.capacite() == p.capacite()
+                    && this.hashCode() == p.hashCode() && this.taille() == p.taille()
+                    && this.toString().equals(p.toString());
+                    
+              } else
+                return false;
+            }
 
-	public boolean equals(Object o) {
-		// à compléter
-		return false;
-	}
-
-	// fonction fournie
-	public int hashCode() {
-		return toString().hashCode();
-	}
+    // fonction fournie
+    public int hashCode() {
+        return toString().hashCode();
+    }
 
 }

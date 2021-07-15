@@ -105,6 +105,9 @@ public class PilesAuMemeComportement extends junit.framework.TestCase {
         assertEquals("p1.estPleine() != p2.estPleine() ??? ",p1.estPleine(), p2.estPleine());
         assertEquals("p2.estPleine()!=  p3.estPleine() ??? ",p2.estPleine(), p3.estPleine());
         assertEquals(" différence sur la taille() ?? ",p1.taille(), p2.taille());
+
+
+
         assertEquals(" différence sur la taille() ?? ",p2.taille(), p3.taille());
         assertEquals(" différence  sur la taille() ?? ",p3.taille(), p4.taille());
 

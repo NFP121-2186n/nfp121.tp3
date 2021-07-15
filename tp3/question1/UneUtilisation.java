@@ -20,9 +20,9 @@ public class UneUtilisation {
 			p1.empiler(new PolygoneRegulier(4,100));
 			// ....
 			String s = (String) p1.depiler(); // vérifiez qu'une exception se
-												// produit
-		} catch (Exception e) {
-			e.printStackTrace();
+			// completed code															// produit
+		} catch (ClassCastException e) {
+			System.out.println(e.getMessage());
 		} // catch
 	} // main()
 } // UneUtilisation

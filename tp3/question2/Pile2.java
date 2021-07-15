@@ -8,7 +8,7 @@ import java.util.Stack;
 public class Pile2 implements PileI {
     /** par delegation : utilisation de la class Stack */
     private Stack<Object> stk;
-
+    int elems;
     /** la capacite de la pile */
     private int capacite;
 
@@ -19,27 +19,39 @@ public class Pile2 implements PileI {
      *            la taille de la pile, la taille doit etre > 0
      */
     public Pile2(int taille) {
-        // prevoir le cas <=0
-        // a completer
+    	// completed code
+        if(taille<0)
+            taille = CAPACITE_PAR_DEFAUT;
+        this.stk = new Stack<Object>();
+        this.capacite = taille;
+        elems = 0;
     }
 
     // constructeur fourni
     public Pile2() {
-        this(0);
+        this(CAPACITE_PAR_DEFAUT);
     }
 
     public void empiler(Object o) throws PilePleineException {
-        // a completer
+    	// completed code
+    	if (estPleine())
+        throw new PilePleineException();
+       this.stk.push(o);
+       elems++;
+    
     }
 
     public Object depiler() throws PileVideException {
-        // a completer
-        return null;
+    	// completed code
+    	if (estVide())
+            throw new PileVideException();
+            elems--;
+        return this.stk.pop();
     }
 
     public Object sommet() throws PileVideException {
-        // a completer
-        return null;
+    	// completed code
+    	return this.stk.peek();
     }
 
     /**
@@ -48,8 +60,8 @@ public class Pile2 implements PileI {
      * @return vrai si la pile est vide, faux autrement
      */
     public boolean estVide() {
-        // a completer
-        return false;
+    	// completed code
+    	return elems <= 0;
     }
 
     /**
@@ -58,8 +70,8 @@ public class Pile2 implements PileI {
      * @return vrai si la pile est pleine, faux autrement
      */
     public boolean estPleine() {
-        // a completer
-        return false;
+    	// completed code
+        return elems >= capacite;
     }
 
     /**
@@ -69,15 +81,30 @@ public class Pile2 implements PileI {
      * @return une representation en String d'une pile
      */
     public String toString() {
-        String s = "[";
-        // a completer
-        return s + "]";
+    	// completed code
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i=this.elems-1; i>= 0; i--) {
+            sb.append(stk.get(i).toString());
+            if (i > 0)
+                sb.append(", ");
+        
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     public boolean equals(Object o) {
-        // a completer
-        return false;
-    }
+    	// completed code
+        if (o instanceof PileI) {
+            PileI p = (PileI) o;
+            return this.capacite() == p.capacite()
+                && this.hashCode() == p.hashCode() && this.taille() == p.taille()
+                && this.toString().equals(p.toString());
+                
+          } else
+            return false;
+        }
 
     // fonction fournie
     public int hashCode() {
@@ -90,8 +117,9 @@ public class Pile2 implements PileI {
      * @return le nombre d'element
      */
     public int taille() {
-        // a completer
-        return 0;
+    	// completed code
+        if(elems <= 0) return 0;
+        return this.elems ;
     }
 
     /**
@@ -100,8 +128,8 @@ public class Pile2 implements PileI {
      * @return le nombre d'element
      */
     public int capacite() {
-        // a completer
-        return 0;
+    	// completed code
+        return this.capacite;
     }
 
 } // Pile2.java
